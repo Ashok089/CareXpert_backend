@@ -125,13 +125,13 @@ const signup = async (req: Request, res: any) => {
           });
 
           if (!cityRoom) {
-            cityRoom = await prisma.room.create({
+            cityRoom = await tx.room.create({
               data: { name: clinicLocation },
             });
           }
 
           // Add user to the city room
-          await prisma.room.update({
+          await tx.room.update({
             where: { id: cityRoom.id },
             data: {
               members: {
@@ -155,13 +155,13 @@ const signup = async (req: Request, res: any) => {
           });
 
           if (!cityRoom) {
-            cityRoom = await prisma.room.create({
+            cityRoom = await tx.room.create({
               data: { name: location },
             });
           }
 
           // Add user to the city room
-          await prisma.room.update({
+          await tx.room.update({
             where: { id: cityRoom.id },
             data: {
               members: {
